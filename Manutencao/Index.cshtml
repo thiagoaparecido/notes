@@ -1,0 +1,45 @@
+﻿@model Common.Web.Models.FiltroGenerico
+@{
+    ViewBag.Title = "Filtro";
+}
+
+<h2 class="searchTitle">Faça aqui a sua busca</h2>
+<h3 class="searchTitle" style="font-style:normal">Busque por grupo, agrupamento, revenda (código ou nome) ou gerente</h3>
+
+@using (Html.BeginForm("Resultado", "Manutencao", FormMethod.Get, new { id = "formIndex" }))
+{
+    <body>
+        <div align="center" style="margin-top:150px;">
+            <div>
+                @Html.TextBoxFor(model => model.Geral, new { style = "width:680px; text-align:center" , @id="txtFiltro" ,@placeholder = "Informe sua busca.", @required = "true" })
+            </div>
+
+            <div style="margin-top:10px;">
+                <input type="button" id="btnBuscar" class="btn btn-sm btn-light" style="width:100px;" value="Buscar" />
+            </div>
+        </div>
+    </body>
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('input').keypress(function (e) {
+            var code = null;
+            code = (e.keyCode ? e.keyCode : e.which);
+            return (code == 13) ? false : true;
+        });
+    });
+
+   $('#btnBuscar').click(function () {
+
+        if ($('#txtFiltro').val().length < 3) {
+
+            toastr.error("Informa um filtro com no minimo 3 digitos");
+        }
+        else {
+            $("#formIndex").submit();
+        }
+    });
+
+</script>
+

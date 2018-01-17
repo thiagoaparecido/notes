@@ -1,0 +1,342 @@
+﻿@model IEnumerable<SCDRetaguarda.Comercial.Web.PotencialService.Potencial>
+
+@{
+    ViewBag.Title = "Potenciais";
+}
+
+
+<h2 id="titulo" class="score-h2">Selecione o Grupo ou Agrupamento</h2>
+
+<br />
+
+<div col-xs-12>
+    <table id="resultado" class="table table-bordered table-hover thead-light" style="visibility: hidden;">
+        <thead>
+            <tr>
+                <th width="10px"></th>
+                <th>Código</th>
+                <th class="hidden">Tipo</th>
+                <th>Nome Grupo</th>
+                <th>Gerente de Filial</th>
+                <th style="text-align:center">Atual Potencial </th>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="details-control " value="@item.Codigo"><i class="fa fa-level-down" aria-hidden="true"></i></td>
+                        <td align="center">@item.Codigo</td>
+                        <td class="hidden" id="tipo" value="@item.Tipo">@item.Tipo</td>
+                        <td>@item.Nome</td>
+                        <td >@item.NomeUsuario</td>
+                        <td data-toggle="tooltip" data-placement="left"  align="center"><div class="score-potencial blue bigger-125" id="vlPotencialCetip_@item.Codigo">@item.ValorPotencial.ToString("N2")</div></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+
+</div>
+
+@*@section CustomScripts{*@
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var idRevenda = null;
+            var tabela = $('#resultado').DataTable({
+                "searching": false,
+                "language": {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZero2Records": "Nenhum registro encontrado",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                }
+            });
+            $('#resultado').removeAttr('style');
+
+            $('#resultado tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = tabela.row(tr);
+
+                if (row.child.isShown()) {
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    
+
+                        $.ajax({
+                            url: '@Url.Action("ObterDadosRevenda","Manutencao")',
+                            data: { idGrupoRevenda: $(this).attr("value") },
+                            success: function (data) {
+
+                                row.child(format(data)).show();
+                                tr.addClass('shown');
+                                $('#titulo').text('Distribua o Potencial e aponte o valor de Venda Direta');
+                                $('[data-toggle="tooltip"]').tooltip(); 
+                            }
+                     });
+                }
+            });
+        });
+
+        function format(d) {
+
+            var texto = '<table id="tbRevenda" class="table table-bordered table-striped" style="visibility">'
+                texto += '<tr>' + '<th>Código Revenda</th>' +
+                              '<th><b>Nome Revenda</b></th>' +
+                              '<th><b>Gerente</b></th>' +
+                              '<th class="hidden">GerenteId</th>' +
+                               '<th class="hidden">Subtracao</th>' +
+                               '<th align="center">'+
+                                '<div class="div-potencial"> Potencial </div>' +
+                                '<div class="div-vendadireta"> Venda Direta </div>' +
+                               '</th>'
+                          '</tr>'
+
+            var linhaGrupo = 0;
+            var potencial = 0;
+            var direta = 0;
+            var totalRevenda = 0;
+            var totalDireta = 0;
+            var cdgrupo = 0;
+            var vlnovoPotencial = 0;
+
+            for (i = 0; i < d.length ; i++) {
+                cdgrupo = d[i].GrupoRevendaId;
+                linhaGrupo++;
+                potencial = d[i].ValorRevenda;
+                potencial = (potencial).toLocaleString('pt-BR');
+                direta = d[i].ValorDireta;
+                direta = (direta).toLocaleString('pt-BR');
+                vlnovoPotencial = d[i].NovoPotencial;
+                vlnovoPotencial = (vlnovoPotencial).toLocaleString('pt-BR');
+                totalRevenda = totalRevenda + d[i].ValorRevenda;
+                totalDireta = totalDireta + d[i].ValorDireta;
+
+                texto += '<tr>' +
+                         '<td id="cdRevenda"  name="cdRevenda_' + linhaGrupo + '" data-id ="' + d[i].Codigo + '" class="tbRevenda_' + cdgrupo + '"  align="center">' + d[i].Codigo + '</td>' +
+                         '<td id="nmRevenda" class= "blue">' + d[i].Nome + '</td>' +
+                         '<td id="nmUsuario">' + d[i].NomeUsuario + '</td>' +
+                         '<td class="hidden" id="GerenteId" value="' + d[i].GerenteId + '"> ' + d[i].GerenteId + '</td>' +
+                         '<input type="hidden" class="hidden" id="cdTabela" name="cdTabela" value=""></input>' +
+                         '<td>' +
+                            '<div align="center">' +
+                              '<div>' +
+                                 '<input type="text" id="vlRevenda_' + cdgrupo + '" class="tbRevenda1_' + cdgrupo + ' score-potenciaisdireta blue bigger-125" data-toggle="tooltip" data-placement="left" title="" data-vlRevenda ="' + d[i].ValorRevenda + '" value ="' + potencial + '" vlname="vlRevenda" onkeydown="formataRevenda(this)" onkeyup="atualizaTotalRevenda(' + cdgrupo + ')" onmouseover="tooltipSubtracao(' + cdgrupo + ')" onmouseout="hideTooltip(' + cdgrupo + ')" onblur="hideTooltip(' + cdgrupo + ')" onfocus="tooltipSubtracao(' + cdgrupo + ')">' +
+                                 '<input type="text" id="vlDireta_' + cdgrupo + '" class="tbRevenda2_' + cdgrupo + ' score-potenciaisdireta blue bigger-125" name="vlDireta" data-vlDireta ="' + d[i].ValorDireta + '"  value ="' + direta + '"  onkeydown="formataVendaDireta(this)" onkeyup="atualizaTotalVendaDireta('+ cdgrupo +')">' +
+                              '</div>' +
+                            '</div>' +
+                         '</td>' +
+
+                         '</tr>'
+            }
+              texto += '<td colspan = "3">' +
+                             '<h3 align="center"> Confira os somatórios </h3>' +
+                     '</td>' +
+                       '<div class="score-potenciais">' +
+                        '<h3 class="potencial-novo"> Novo Potencial </h3>' +
+                         '<input type="text"  class="potencial-novocampo blue" id="vlNovoPotencial_' + cdgrupo + '" name="vlNovoPotencial" value = "' + vlnovoPotencial + '"onkeydown="formataNovo(this)" onBlur="tooltipSubtracao('+ cdgrupo +'">' +
+                       '</div>' +
+                       '<td>' +
+                         '<div align="center">' +
+                                '<input type="text" class="score-potenciaisdireta blue bigger-125" ReadOnly="true" value = "' + totalRevenda.toLocaleString('pt-BR') + '" id="vlRevendaTotal_' + cdgrupo + '" name="vlRevendaTotal">' +
+                                '<input type="text" class="score-potenciaisdireta blue bigger-125" ReadOnly="true" value = "' + totalDireta.toLocaleString('pt-BR') + '" id="vlVendaDiretaTotal_' + cdgrupo + '" name="vlVendaDiretaTotal" >' +
+                         '</div>' +
+                         '<div align="center">' +
+                             '<button id="btnSalvar" class="btn btn-sm btn-salvar" onclick="Salvar(' + cdgrupo + ')"> Salvar </button>' +
+                         '</div>' +
+                       '</td>' +
+                      '</table>';
+            return texto;
+        }
+
+        function hideTooltip(cdgrupo) {
+            $(".tbRevenda1_" + cdgrupo).tooltip('hide');
+        }
+          
+        function formataNovo(obj) {
+            var valor = $(obj).val();
+            $(obj).maskMoney({ allowNegative: false, thousands: '.', decimal: ',' });
+            $(obj).maskMoney('mask', valor.toString().replace('.', ','));
+        }
+
+        function formataRevenda(obj) {
+            var valor = $(obj).val();
+            $(obj).maskMoney({ allowNegative: false, thousands: '.', decimal: ',' });
+            $(obj).maskMoney('mask', valor.toString().replace('.', ','));
+          
+        }
+
+        function atualizaTotalRevenda(cdgrupo) {
+            var soma = 0;
+            var valor = 0;
+            $("#tbRevenda > tbody > tr > td > div > div > input").each(function (i) {
+                if ($(this).attr('id') == "vlRevenda_" + cdgrupo) {
+                    var valor = $(this).val();
+                    if (valor != "") {
+                        soma += parseFloat(valor.toString().replace('.', '').replace('.', '').replace(',', '.'));
+                    }
+                }
+            });
+            soma = (soma.toFixed(2));
+            mascaraTotalRevenda(soma, cdgrupo);
+        }
+
+        function formataVendaDireta(obj) {
+            var valor = $(obj).val();
+            $(obj).maskMoney({ allowNegative: false, thousands: '.', decimal: ',' });
+            $(obj).maskMoney('mask', valor.toString().replace('.', ','));
+        }
+
+        function atualizaTotalVendaDireta(cdgrupo) {
+            var soma = 0;
+            $("#tbRevenda > tbody > tr > td > div > div > input").each(function (i) {
+                if ($(this).attr('id') == "vlDireta_" + cdgrupo) {
+                    var valor = $(this).val();
+                    if (valor != "") {
+                        soma += parseFloat(valor.toString().replace('.', '').replace('.', '').replace(',', '.'));
+                    }
+                }
+            });
+            soma = (soma.toFixed(2));
+            mascaraTotalVendaDireta(soma, cdgrupo);
+        }
+
+        function mascaraTotalRevenda(valor, cdgrupo) {
+            valor = valor.toString().replace(/\D/g, "");
+            valor = valor.toString().replace(/(\d)(\d{8})$/, "$1.$2");
+            valor = valor.toString().replace(/(\d)(\d{5})$/, "$1.$2");
+            valor = valor.toString().replace(/(\d)(\d{2})$/, "$1,$2");
+            $('#vlRevendaTotal_' + cdgrupo).val(valor);
+        }
+
+        function mascaraTotalVendaDireta(valor, cdgrupo) {
+            valor = valor.toString().replace(/\D/g, "");
+            valor = valor.toString().replace(/(\d)(\d{8})$/, "$1.$2");
+            valor = valor.toString().replace(/(\d)(\d{5})$/, "$1.$2");
+            valor = valor.toString().replace(/(\d)(\d{2})$/, "$1,$2");
+            $('#vlVendaDiretaTotal_' + cdgrupo).val(valor);
+        }
+
+        function tooltipSubtracao(cdgrupo) {  
+            var calculo = 0;
+            var cetip = $("#vlPotencialCetip_" + cdgrupo).text()
+            var novoPotencial = $("#vlNovoPotencial_" + cdgrupo).val();
+            var vlRevendaTotal = $("#vlRevendaTotal_" + cdgrupo).val().replace('.', '').replace('.', '').replace(',', '.');
+            var potencialCETIP = cetip.replace('.', '').replace('.', '').replace(',', '.');
+           
+            if (novoPotencial == "0" || novoPotencial == "0.0" || novoPotencial == "0,00") {
+                novoPotencial = parseInt(novoPotencial.toString());
+            }
+          
+            if (novoPotencial != 0 || novoPotencial != "") {
+            var potencialnovo = novoPotencial.replace('.', '').replace('.', '').replace(',', '.');
+                calculo = potencialnovo - vlRevendaTotal;
+                calculo = calculo.toFixed(2).replace('.', ',');
+                mascaraSubtracao(calculo, cdgrupo);
+            } else {
+                calculo = potencialCETIP - vlRevendaTotal;
+                calculo = calculo.toFixed(2).replace('.', ',');
+                mascaraSubtracao(calculo, cdgrupo);
+            }
+        }
+
+        function mascaraSubtracao(calculo, cdgrupo) {
+        
+            calculo = calculo.toString().replace(/(?!-)[^0-9.]/g, "");
+            calculo = calculo.toString().replace(/(\d)(\d{8})$/, "$1.$2");
+            calculo = calculo.toString().replace(/(\d)(\d{5})$/, "$1.$2");
+            calculo = calculo.toString().replace(/(\d)(\d{2})$/, "$1,$2");
+      
+            $(".tbRevenda1_" + cdgrupo).attr('data-original-title', calculo);
+            $(".tbRevenda1_" + cdgrupo).tooltip('hide');
+        }
+
+        function Salvar(cdgrupo) {
+            var erro = 0;
+            var sucesso = 0;
+            var lista = new Array;
+            var item = new Array;
+
+            var Codigo = new Array;
+            var vlPotencial = new Array;
+            var vlDireta = new Array;
+            var idGrupo = cdgrupo;
+
+            var idGerente = 0;
+            var calculo = 0;
+            var novoPotencial = $("#vlNovoPotencial_" + cdgrupo).val().replace(/[\.-]/g, "");
+            var idGerente = $("#GerenteId").text();
+            var totalRevenda = $("#vlRevendaTotal_" + cdgrupo).val().replace(/[\.-]/g, "");
+            var potencialCETIP = $("#vlPotencialCetip_" + cdgrupo).text().replace(/[\.-]/g, "");
+
+            totalRevenda = parseFloat(totalRevenda);
+            novoPotencial = parseFloat(novoPotencial);
+            potencialCETIP = parseFloat(potencialCETIP);
+
+
+            $('.tbRevenda_' + cdgrupo).each(function () {
+                Codigo.push($(this).data('id'));
+            });
+
+            $('.tbRevenda1_' + cdgrupo).each(function () {
+                vlPotencial.push($(this).val().replace(/[\.-]/g, ""));
+            });
+
+            $('.tbRevenda2_' + cdgrupo).each(function () {
+                vlDireta.push($(this).val().replace(/[\.-]/g, ""));
+            });
+
+            if (novoPotencial != 0) {
+                calculo = novoPotencial - totalRevenda;
+            }
+            else
+            {
+                calculo = potencialCETIP - totalRevenda;
+            }
+
+            if (calculo != 0) {
+                toastr.error("Potencial informado divergente do valor total distribuído");
+            }
+            else
+            {
+                $.ajax({
+                url: '@Url.Action("Salvar", "Manutencao")',
+                data: { Codigo: Codigo, ValorPotencialRevenda: vlPotencial, ValorVendaDireta: vlDireta, novoPotencial: novoPotencial, idGrupo: idGrupo, idGerente:idGerente },
+                type: 'POST',
+                assync: false,
+                success: function (result) {
+                    if (result.success == true) {
+                        toastr.success("Distribuição de potencial salvo com sucesso");
+                    } else {
+                        toastr.error("Ocorreu um erro");
+                    }
+                },
+            });
+           }
+        }
+        $('[data-toggle="tooltip"]').tooltip();
+    </script>
+@*}*@
