@@ -26,3 +26,6 @@ https://www.primefaces.org/primeng/#/
 # Perfis Site GUJ (Allura) #
 http://www.guj.com.br/u/Bruno_Almeida
 http://www.guj.com.br/u/javaflex
+
+Jobs Nexaas
+https://jobs.kenoby.com/nexaas-trabalhe-conosco
