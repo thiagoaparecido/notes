@@ -1,1 +1,4 @@
 https://help.github.com/
+
+Tirar Proxy do Git
+git config --global --unset http.proxy
