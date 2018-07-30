@@ -1,0 +1,13 @@
+Contas Mensais		
+Aluguel	1182,77	
+Condomínio	704,94	
+Remédios	750	
+Empr Meriva	720	
+Fretado	600	
+Metrô	170	
+Internet	100	
+TIM	100	
+Netflix	27,9	
+Contador	250	Trimestral
+Energia	150	
+Ração e Areia	80	
