@@ -1,13 +1,16 @@
 Contas Mensais		
 Aluguel	1182,77	
-CondomÌnio	704,94	
-RemÈdios	750	
+Condom√≠nio	704,94	
+Rem√©dios	750	
 Empr Meriva	720	
 Fretado	600	
-MetrÙ	170	
+Metr√¥	170	
 Internet	100	
 TIM	100	
 Netflix	27,9	
 Contador	250	Trimestral
 Energia	150	
-RaÁ„o e Areia	80	
+Ra√ß√£o e Areia	80	
+
+Emp√©stimo Ita√∫: 48 de 1.040,18 - In√≠cio em 18/10
+(Taxa 1.69% com seguro)
