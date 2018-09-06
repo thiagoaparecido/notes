@@ -4,3 +4,9 @@ baixar firmware-ath9k-htc_1.4.0-81-gf206e56+dfsg-2_all.deb
 
 terminal:
 dpkg -i firmware-ath9k-htc_1.4.0-81-gf206e56+dfsg-2_all.deb
+
+
+************************************************************
+https://launchpad.net/+search?field.text=atheros+ubuntu+acer&field.actions.search=Search
+
+https://answers.launchpad.net/netbook-remix/+question/63150
