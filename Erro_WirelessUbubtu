@@ -1,0 +1,6 @@
+https://www.vivaolinux.com.br/topico/UbuntuBR/Qualcomm-Atheros-QCA9565-AR9565-Wireless-Network-Adapter-rev-01-No-ubuntu-1710
+
+baixar firmware-ath9k-htc_1.4.0-81-gf206e56+dfsg-2_all.deb
+
+terminal:
+dpkg -i firmware-ath9k-htc_1.4.0-81-gf206e56+dfsg-2_all.deb
