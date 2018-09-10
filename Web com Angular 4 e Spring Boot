@@ -4,4 +4,8 @@ Requirements:
     - Groovy/Grails Tool Suite (https://spring.io/tools/ggts)
         - Groovy (http://groovy-lang.org)
         
-        
+- Node e NPM
+
+- Mysql e Mysql Workbench (https://www.mysql.com/products/workbench/)
+
+- Spring Tool Suite aberto vamos clicar no menu File -> New -> Spring Starter Project
