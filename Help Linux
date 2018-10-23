@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?> 
+
+<Root>
+
+	<Dicas>
+	
+		df -kh .
+		du -sh mum
+		du -sh 2018-05-19_020031018691664.zip
+		ls -ltr *.zip
+		
+		ls -ltr | awk '{ if ( $6 ~ /Mar/ ) { print $9 }}' | xargs rm -f
+
+
+	
+		Ctrl + W : Apaga o texto da linha inteira
+	lG
+		history | grep [comando] : Comandos executados pelo usuário logado.
+	
+		cat: Abre um arquivo binário ou texto.
+			-n, –number Mostra o número das linhas enquanto o conteúdo do arquivo é mostrado.
+			-s, –squeeze-blank Não mostra mais que uma linha em branco entre um parágrafo e outro.
+		
+		pwd: Mostra o diretório que vc está.
+
+		<ls>
+			ls : Listagem mostrando o dono, grupo, tamanho dos arquivos.
+					-l Usa o formato longo para listagem de arquivos. Lista as permissões, data de modificação, donos, grupos, etc.
+					-a, –all Lista todos os arquivos (inclusive os ocultos) de um diretório.
+					-d, –directory Lista os nomes dos diretórios ao invés do conteúdo.
+					-o Usa a listagem longa sem os donos dos arquivos (mesma coisa que -lG).
+					-R Lista diretórios e sub-diretórios recursivamente.
+					
+					ls .. : Lista diretório acima.
+					
+					ls -la
+					-rwxr-xr-- 1 gleydson user 8192 nov 4 16:00 teste
+			
+						gleydson Nome do dono do arquivo teste.
+						user Nome do grupo que o arquivo teste pertence.
+						8192 Tamanho do arquivo (em bytes).
+						nov Mês da criação/ última modificação do arquivo.
+						4 Dia que o arquivo foi criado.
+						16:00 Hora em que o arquivo foi criado/modificado. Se o arquivo foi criado há mais de um ano, em seu lugar é mostrado o ano da criação do arquivo.
+						teste Nome do arquivo.
+						
+						Exemplos do uso do comando ls:
+							• ls - Lista os arquivos do diretório atual.
+							• ls /bin /sbin - Lista os arquivos do diretório /bin e /sbin
+							• ls -la /bin - Listagem completa (vertical) dos arquivos do diretório /bin inclusive os ocultos.
+		</ls>				
+		
+		*** Diretório de Usuário: /home/[login]
+		ls ~ : Lista os arquivos do diretório Home.
+		cd ~ : Vai para o diretório do usuário.
+			cd /, retornará ao diretório raíz.
+			cd -, retornará ao diretório anteriormente acessado.
+			cd .., sobe um diretório.
+		
+		cp: Copia arquivos.
+		<cp>
+		
+			cp -rp lib /opt/jboss/mum-swift/scripts/
+			*** Copia a pasta lib (existe no diretório atual) criando ela no destino
+		
+			https://www.vivaolinux.com.br/artigo/Fundamentos-do-sistema-Linux-comandos-do-Linux/
+		
+			cp [opções] [origem] [destino]
+				i, –interactive Pergunta antes de substituir um arquivo existente.
+				-f, –force Não pergunta, substitui todos os arquivos caso já exista.
+				-r Copia arquivos dos diretórios e subdiretórios da origem para o destino. É recomendável usar -R ao invés de -r.
+				-R, –recursive Copia arquivos e sub-diretórios (como a opção -r) e também os arquivos especiais FIFO e dispositivos.
+				
+				Exemplos:
+				cp teste.txt teste1.txt Copia o arquivo teste.txt para teste1.txt.
+				cp teste.txt /tmp Copia o arquivo teste.txt para dentro do diretório /tmp.
+				cp * /tmp Copia todos os arquivos do diretório atual para /tmp.
+				cp /bin/* . Copia todos os arquivos do diretório /bin para o diretório em que nos encontramos
+				no momento.
+				cp -R /bin /tmp Copia o diretório /bin e todos os arquivos/sub-diretórios existentes
+				para o diretório /tmp.
+				cp -R /bin/* /tmp Copia todos os arquivos do diretório /bin (exceto o diretório /bin) e
+				todos os arquivos/sub-diretórios existentes dentro dele para /tmp.
+				cp -R /bin /tmp Copia todos os arquivos e o diretório /bin para /tmp.
+		</cp>
+	
+		mv: Move ou renomeia arquivos e diretórios.
+			mv squid-command.properties.cert2 squid-command.properties
+		
+		df: Mostra o espaço livre/ocupado de cada partição.
+		du: Mostra o espaço ocupado por arquivos e sub-diretórios do diretório atual.
+		
+		<find>
+			find: find [diretório] [opções/expressão]
+				-depth Processa os sub-diretórios primeiro antes de processar os arquivos do diretório principal
+				-type [tipo ] Procura por arquivos do [tipo] especificado.
+					• b - bloco
+					• c - caracter
+					• d - diretório
+					• p - pipe
+					• f - arquivo regular
+					• l - link simbólico
+					• s - socket
+					
+					# find "local_de_busca" -name "nome_do_arquivo" (sem aspas duplas)
+					
+					O "." significa a partir do diretório atual.
+					# find . -name "nome_do_arquivo"
+					
+					Procura por arquivos maior que "1MB", substitua pelo tamanho que você desejar.
+					# find /localdebusca -size "+1M" -exec ls -lah {} \;
+					
+					Procura por arquivos maior que "1GB", substitua pelo tamanho que você desejar.
+					# find /localdebusca -size "+1G" -exec ls -lah {} \;
+					
+					Usando o comando "updatedb" e "locate".
+					# updatedb (atualiza o catálogo de arquivos existentes no FS do Linux)
+					# locate "nome_do_arquivo" (sem aspas)
+		</find>
+		
+		locate: Localiza uma palavra na estrutura de arquivos/diretórios do sistema
+		which: Localiza um programa na estrutura de diretórios do path.
+		
+		<grep sigal="Globally Search a Regular Expression and Print">
+			
+			http://cleitonbueno.com/linux-dominando-o-comando-grep/
+			
+			grep: Procura por um texto dentro de um arquivo(s) ou no dispositivo de entrada padrão.
+				grep [expressão] [arquivo] [opções]
+		
+				-c	Conta quantas vezes apareceu a string que esta pesquisando
+				-v	Mostra na tela “tudo” menos onde houver a ocorrência da string pesquisada
+				-i	Realiza uma busca pela string ignorando o case, sendo case-insensitive
+				-o	Ira mostrar na tela apenas as ocorrências da string pesquisada ignorando o resto
+				-n	Ira mostrar na tela na primeira coluna a linha onde encontrou a string pesquisada
+				-B	Numero de linhas a serem impressas antes da linha que contem a string pesquisada [BEFORE]
+				-A	Numero de linhas a serem impressas na tela depois da encontrar a linha com a string [AFTER]
+				-C	Quantidade de linhas antes e depois da linha que contem a string [CONTEXT]
+				-q	Ira procurar pela string informada, porém estará em modo silencioso, nada sera impresso na tela, porém caso encontre o comando encerra com 0, caso não encontre nada será 1
+				-E	Extende o uso de Regex no padrão e combinação, usando logica AND e OR por exemplo
+				-f	Um arquivo com combinações de padrões com Regex, podendo usar varias combinações
+				-l	Mostra somente o nome do arquivo onde foi encontrado a string pesquisada
+				-L	Semelhante ao -v, porque mostra apenas os arquivo que não contem a string informada
+				-h	Pesquisa varias arquivos, diretórios se com -r mas não mostra o nome dos arquivos
+				-r	Ira realizar uma pesquisa recursiva em todos os diretórios a partir do informado
+				–color	Deve-se passar o parâmetro ‘never’ caso não queira que a saída marque com cor a string ou ‘auto’ e ‘always’ para operar conforme necessite. Pode mudar a cor alterando GREP_COLOR, GREP_COLORS no environment		
+		
+		</grep>
+		
+		head: Mostra as linhas iniciais de um arquivo texto.
+		tail: Mostra as linhas finais de um arquivo texto.
+			-c [numero ] Mostra o [numero] de bytes do final do arquivo.
+			-n [numero ] Mostra o [numero] de linhas do final do arquivo.
+			-f Mostra continuamente linhas adicionadas no final do arquivo.
+		
+		su: Permite o usuário mudar sua identidade para outro usuário sem fazer o logout.
+		who: Mostra quem está atualmente conectado no computador.
+		finger: Mostra detalhes sobre os usuários de um sistema.
+		
+		/usr/share/doc/[programa]: Documentação de Programas
+		
+	</Dicas>
+
+	<Adm_rquivos_Diretorios>
+	
+		chmod : Mudar a proteção de um arquivo ou diretório
+		chgrp : Mudar o grupo de um arquivo ou diretório
+		cmp : Compara dois arquivos
+		comm : Seleciona ou rejeita linhas comuns a dois arquivos selecionados
+		cp : Copia arquivos, como o copy do MS-DOS
+		crypt : Encripta ou Descripta arquivos (apenas CCWF)
+		diff : Compara o conteúdo de dois arquivos ASCII
+		file : Determina o tipo de arquivo
+		grep : Procura um arquivo
+		gzip : Comprime ou expande arquivo
+		ln : Cria um link a um arquivo
+		ls : Lista o conteúdo de uma diretório, semelhante ao comando dir no MSDOS
+		lsof : Lista os arquivos abertos, vem de list open 􀁺les
+		mkdir : Cria uma diretório, vem de make directory”
+		mv : Move ou renomeia arquivos ou diretórios
+		pwd : Mostra-nos o caminho por inteiro da diretório em que nos encontramos em dado momento, ou seja um pathname
+		quota : Mostra-nos o uso do disco e os limites
+		rm : Apaga arquivos
+		rmdir : Apaga diretório (ou rm -rf)
+		stat : Mostra o estado de um arquivo, útil para saber por exemplo a hora e data do último acesso ao mesmo
+		sort : Ordena arquivos de um diretório ou linhas dentro de um arquivo
+		tar : Cria ou extrai arquivos, muito usado como programa de backup ou compressão de arquivos
+		tee : Copia o input para um standard output e outros arquivos
+		tr : Traduz caracteres
+		umask : Muda as proteções de arquivos
+		uncompress : Restaura um arquivo comprimido
+		uniq : Reporta ou apaga linhas repetidas num arquivo
+		wc : Conta linhas, palavras e mesmo caracteres num arquivo
+		
+	</Adm_rquivos_Diretorios>
+
+	<Controlo_de_Processos>
+	
+		<ps>
+			https://cadernodelaboratorio.com.br/2017/10/25/o-comando-ps-no-linux/
+			https://cadernodelaboratorio.com.br/2015/06/26/controlando-processos-no-linux/
+			ps: Lista os processos em execução.
+				ps aux: Lista todos os processos em execução.
+				kill -l: Lista os processos com sinais de controle.
+					Pegando o número do controle pode ser executado "Kill -[numero]"
+					
+				ps -e ou ps -A : Listando todos os processos do sistema no formato Linux
+				ps -f ou ps -F : Lista mais informações, inclusive o "Parent ID"
+				ps -u [usuário]: Listando todos os processos associados a um usuário
+				ps -x: Listando todos os processos associados ao seu usuário
+				ps -g [nomedogrupo]: nivel grupo
+				ps -C nomedoexecutável
+		</ps>
+	
+		kill : Mata um processo, como por exemplo kill -kill 100 ou kill -9 100 ou kill -9 %1
+		bg : Coloca um processo suspenso em background
+		fg : Ao contrário do comando bg , o fg traz de volta um processo ao foreground
+		jobs : Permite-nos visualizar jobs em execução, quando corremos uma aplicação em background, poderemos ver esse job com este comando, e termina-lo com um comando kill -9 %1 , se for o jobnúmero 1, por exemplo
+		top : Lista os processos que mais cpu usam, útil para veri􀁺car que processos estão a provocar um uso excessivo de memória, e quanta percentagem decpu cada um usa em dado momento
+		^y : Suspende o processo no próximo pedido de input
+		^z : Suspende o processo actual
+		clock : De􀁺ne a hora do processador
+		date : Exibe a data e hora
+		df : Exibe um resumo do espaço livre em disco
+		du : Exibe um resumo do uso do espaço em disco
+		env : Exibe as variáveis de ambiente
+		finger : Pesquisa informações de utilizadores
+		history : Lista os últimos comandos usados, muito útil para lembrar também de que comandos foram usados para fazer determinada acção no passado ou o que foi feito em dada altura
+		last : Indica o último login de utilizadores
+		lpq : Examina a spool queue
+		manpath : Mostra a path de procura para as páginas do comando man
+		printenv : Imprime as variáveis de ambiente
+		ps : Lista a lista de processos em execução, útil para saber o pid de um processo para o mandar abaixo com o comando kill, entre outras coisas
+			*** ps -aux | grep -i sog
+				
+			
+			
+		pwd : Mostra-nos o caminho por inteiro do diretório em que nos encontramos em dado momento, ou seja um pathname
+		set : De􀁺ne variáveis da sessão, ou seja, da shell, na C shell, na bash ou na ksh
+		spend : Lista os custos ACITS UNIX até à data time Mede o tempo de execução de programas
+		uptime : Diz-nos há quanto tempo o sistema está funcional, quando foi ligado e o seu uptime
+		w : Mostra-nos quem está no sistema ou que comando cada job está a executar
+		who : Mostra-nos quem está logado no sistema foi registado, quando expira, etc
+		whoami : Diz-nos quem é o dono da shell
+		
+	</Controlo_de_Processos>
+
+	<FHS sigla="Filesystem Hierarchy Standard" >
+
+		/bin Contém arquivos programas do sistema que são usados com freqüência pelos usuários.
+		/boot Contém arquivos necessários para a inicialização do sistema.
+		/cdrom Ponto de montagem da unidade de CD-ROM.
+		/media Ponto de montagem de dispositivos diversos do sistema (rede, pen-drives, CD-ROM em distribuições mais novas).
+		/dev Contém arquivos usados para acessar dispositivos (periféricos) existentes no computador.
+		/etc Arquivos de configuração de seu computador local.
+		/floppy Ponto de montagem de unidade de disquetes
+		/home Diretórios contendo os arquivos dos usuários.
+		/lib Bibliotecas compartilhadas pelos programas do sistema e módulos do kernel.
+		/lost+found Local para a gravação de arquivos/diretórios recuperados pelo utilitário fsck.ext2. Cada partição possui seu próprio diretório lost+found.
+		/mnt Ponto de montagem temporário.
+		/proc Sistema de arquivos do kernel. Este diretório não existe em seu disco rígido, ele é colocado lá pelo kernel e usado por diversos programas que fazem sua leitura, verificam configurações do sistema ou modificar o funcionamento de dispositivos do sistema através da alteração em seus arquivos.
+		/sys Sistema de arquivos do kernel. Este diretório não existe em seu disco rígido, ele é colocado lá pelo kernel e usado por diversos programas que fazem sua leitura, verificam configurações do sistema ou modificar o funcionamento de dispositivos do sistema através da alteração em seus arquivos.
+		/root Diretório do usuário root.
+		/sbin Diretório de programas usados pelo superusuário (root) para administração e controle do funcionamento do sistema.
+		/tmp Diretório para armazenamento de arquivos temporários criados por programas.
+		/usr Contém maior parte de seus programas. Normalmente acessível somente como leitura.
+		/var Contém maior parte dos arquivos que são gravados
+		
+	</FHS>
+
+</Root>
