@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://localhost:61700/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Swagger UI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./BACK-CONECTA - DEAL - Swagger UI_files/css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./BACK-CONECTA - DEAL - Swagger UI_files/swagger-ui.css">
+  <link rel="icon" type="image/png" href="http://localhost:61700/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="http://localhost:61700/favicon-16x16.png" sizes="16x16">
+  <style>
+    html
+    {
+      box-sizing: border-box;
+      overflow: -moz-scrollbars-vertical;
+      overflow-y: scroll;
+    }
+    *,
+    *:before,
+    *:after
+    {
+      box-sizing: inherit;
+    }
+
+    body {
+      margin:0;
+      background: #fafafa;
+    }
+  </style>
+  
+</head>
+
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position:absolute;width:0;height:0">
+  <defs>
+    <symbol viewBox="0 0 20 20" id="unlocked">
+          <path d="M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V6h2v-.801C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8z"></path>
+    </symbol>
+
+    <symbol viewBox="0 0 20 20" id="locked">
+      <path d="M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8zM12 8H8V5.199C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8z"></path>
+    </symbol>
+
+    <symbol viewBox="0 0 20 20" id="close">
+      <path d="M14.348 14.849c-.469.469-1.229.469-1.697 0L10 11.819l-2.651 3.029c-.469.469-1.229.469-1.697 0-.469-.469-.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-.469-.469-.469-1.228 0-1.697.469-.469 1.228-.469 1.697 0L10 8.183l2.651-3.031c.469-.469 1.228-.469 1.697 0 .469.469.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c.469.469.469 1.229 0 1.698z"></path>
+    </symbol>
+
+    <symbol viewBox="0 0 20 20" id="large-arrow">
+      <path d="M13.25 10L6.109 2.58c-.268-.27-.268-.707 0-.979.268-.27.701-.27.969 0l7.83 7.908c.268.271.268.709 0 .979l-7.83 7.908c-.268.271-.701.27-.969 0-.268-.269-.268-.707 0-.979L13.25 10z"></path>
+    </symbol>
+
+    <symbol viewBox="0 0 20 20" id="large-arrow-down">
+      <path d="M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83c-.27.268-.707.268-.979 0l-7.908-7.83c-.27-.268-.27-.701 0-.969.271-.268.709-.268.979 0L10 13.25l7.418-7.141z"></path>
+    </symbol>
+
+
+    <symbol viewBox="0 0 24 24" id="jump-to">
+      <path d="M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7z"></path>
+    </symbol>
+
+    <symbol viewBox="0 0 24 24" id="expand">
+      <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"></path>
+    </symbol>
+
+  </defs>
+</svg>
+
+<div id="swagger-ui"><section data-reactroot="" class="swagger-ui swagger-container"><div class="topbar"><div class="wrapper"><div class="topbar-wrapper"><a rel="noopener noreferrer" class="link"><img height="30" width="30" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAAYFBMVEUAAABUfwBUfwBUfwBUfwBUfwBUfwBUfwBUfwBUfwBUfwBUfwBUfwBUfwBUfwB0lzB/n0BfhxBpjyC0x4////+qv4CJp1D09++ft3C/z5/K16/U379UfwDf58/q79+Ur2D2RCk9AAAAHXRSTlMAEEAwn9//z3Agv4/vYID/////////////////UMeji1kAAAD8SURBVHgBlZMFAoQwDATRxbXB7f+vPKnlXAZn6k2cf3A9z/PfOC8IIYni5FmmABM8FMhwT17c9hnhiZL1CwvEL1tmPD0qSKq6gaStW/kMXanVmAVRDUlH1OvuuTINo6k90Sxf8qsOtF6g4ff1osP3OnMcV7d4pzdIUtu1oA4V0DZoKmxmlEYvtDUjjS3tmKmqB+pYy8pD1VPf7jPE0I40HHcaBwnue6fGzgyS5tXIU96PV7rkDWHNLV0DK4FkoKmFpN5oUnvi8KoeA2/JXsmXQuokx0siR1G8tLkN6eB9sLwJp/yymcyaP/TrP+RPmbMMixcJVgTR1aUZ93oGXsgXQAaG6EwAAAAASUVORK5CYII=" alt="Swagger UI"><span>swagger</span></a><form class="download-url-wrapper"><label class="select-label" for="select"><span>Select a spec</span><select id="select"><option value="/swagger/v1/swagger.json">Conecta Api v1</option></select></label></form></div></div></div><div class="swagger-ui"><div><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position: absolute; width: 0px; height: 0px;"><defs><symbol viewBox="0 0 20 20" id="unlocked"><path d="M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V6h2v-.801C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8z"></path></symbol><symbol viewBox="0 0 20 20" id="locked"><path d="M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8zM12 8H8V5.199C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8z"></path></symbol><symbol viewBox="0 0 20 20" id="close"><path d="M14.348 14.849c-.469.469-1.229.469-1.697 0L10 11.819l-2.651 3.029c-.469.469-1.229.469-1.697 0-.469-.469-.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-.469-.469-.469-1.228 0-1.697.469-.469 1.228-.469 1.697 0L10 8.183l2.651-3.031c.469-.469 1.228-.469 1.697 0 .469.469.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c.469.469.469 1.229 0 1.698z"></path></symbol><symbol viewBox="0 0 20 20" id="large-arrow"><path d="M13.25 10L6.109 2.58c-.268-.27-.268-.707 0-.979.268-.27.701-.27.969 0l7.83 7.908c.268.271.268.709 0 .979l-7.83 7.908c-.268.271-.701.27-.969 0-.268-.269-.268-.707 0-.979L13.25 10z"></path></symbol><symbol viewBox="0 0 20 20" id="large-arrow-down"><path d="M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83c-.27.268-.707.268-.979 0l-7.908-7.83c-.27-.268-.27-.701 0-.969.271-.268.709-.268.979 0L10 13.25l7.418-7.141z"></path></symbol><symbol viewBox="0 0 24 24" id="jump-to"><path d="M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7z"></path></symbol><symbol viewBox="0 0 24 24" id="expand"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"></path></symbol></defs></svg></div><div><!-- react-empty: 40 --><div class="information-container wrapper"><section class="block col-12"><div><div class="info"><hgroup class="main"><h2 class="title"><!-- react-text: 61 -->Connect Api<!-- /react-text --><small><pre class="version"><!-- react-text: 64 --> <!-- /react-text --><!-- react-text: 65 -->v1<!-- /react-text --><!-- react-text: 66 --> <!-- /react-text --></pre></small></h2><a target="_blank" href="http://localhost:61700/swagger/v1/swagger.json" rel="noopener noreferrer" class="link"><span class="url"><!-- react-text: 69 --> <!-- /react-text --><!-- react-text: 70 -->/swagger/v1/swagger.json<!-- /react-text --><!-- react-text: 71 --> <!-- /react-text --></span></a></hgroup><div class="description"><div class="markdown"></div></div></div></div></section></div><div><div class="scheme-container"><section class="schemes wrapper block col-12"><!-- react-empty: 77 --><!-- react-empty: 78 --><!-- react-empty: 79 --></section></div></div><div></div><div class="wrapper"><section class="block col-12 block-desktop col-12-desktop"><div><span><div class="opblock-tag-section is-open"><h4 class="opblock-tag no-desc" id="operations-tag-DomainAtvIndex"><a class="nostyle"><span>DomainAtvIndex</span></a><small></small><div></div><button class="expand-operation" title="Collapse operation"><svg class="arrow" width="20" height="20"><use href="#large-arrow-down" xlink:href="#large-arrow-down"></use></svg></button></h4><div style="height: auto; border: none; margin: 0px; padding: 0px;"><!-- react-text: 95 --> <!-- /react-text --><span><div class="opblock opblock-get" id="operations-DomainAtvIndex-Get"><div class="opblock-summary opblock-summary-get"><span class="opblock-summary-method">GET</span><span class="opblock-summary-path"><a class="nostyle"><span>/api/DomainAtvIndex/Get/{ATV_CODIGO}</span></a></span><div class="opblock-summary-description">Obtém listade dominio AtivoIndexador</div><!-- react-empty: 104 --></div><noscript></noscript></div></span><!-- react-text: 106 --> <!-- /react-text --></div></div></span><span><div class="opblock-tag-section is-open"><h4 class="opblock-tag no-desc" id="operations-tag-DomainErro"><a class="nostyle"><span>DomainErro</span></a><small></small><div></div><button class="expand-operation" title="Collapse operation"><svg class="arrow" width="20" height="20"><use href="#large-arrow-down" xlink:href="#large-arrow-down"></use></svg></button></h4><div style="height: auto; border: none; margin: 0px; padding: 0px;"><!-- react-text: 118 --> <!-- /react-text --><span><div class="opblock opblock-get" id="operations-DomainErro-Get"><div class="opblock-summary opblock-summary-get"><span class="opblock-summary-method">GET</span><span class="opblock-summary-path"><a class="nostyle"><span>/api/DomainErro/Get</span></a></span><div class="opblock-summary-description">Obtém listade dominio para erros</div><!-- react-empty: 127 --></div><noscript></noscript></div></span><!-- react-text: 129 --> <!-- /react-text --></div></div></span><span><div class="opblock-tag-section is-open"><h4 class="opblock-tag no-desc" id="operations-tag-Mensagem"><a class="nostyle"><span>Mensagem</span></a><small></small><div></div><button class="expand-operation" title="Collapse operation"><svg class="arrow" width="20" height="20"><use href="#large-arrow-down" xlink:href="#large-arrow-down"></use></svg></button></h4><div style="height: auto; border: none; margin: 0px; padding: 0px;"><!-- react-text: 141 --> <!-- /react-text --><span><div class="opblock opblock-get" id="operations-Mensagem-ObterMensagens"><div class="opblock-summary opblock-summary-get"><span class="opblock-summary-method">GET</span><span class="opblock-summary-path"><a class="nostyle"><span>/api/Mensagem/ObterMensagens</span></a></span><div class="opblock-summary-description">Obtém lista de mensagens de envio e recebimento de arquivos do Conecta</div><!-- react-empty: 150 --></div><noscript></noscript></div></span><span><div class="opblock opblock-post" id="operations-Mensagem-ObterDetalhes"><div class="opblock-summary opblock-summary-post"><span class="opblock-summary-method">POST</span><span class="opblock-summary-path"><a class="nostyle"><span>/api/Mensagem/ObterDetalhes</span></a></span><div class="opblock-summary-description">Obtém lista dos detalhes da mensagens de envio e recebimento de arquivos do Conecta</div><!-- react-empty: 160 --></div><noscript></noscript></div></span><span><div class="opblock opblock-post" id="operations-Mensagem-AtivarReenvio"><div class="opblock-summary opblock-summary-post"><span class="opblock-summary-method">POST</span><span class="opblock-summary-path"><a class="nostyle"><span>/api/Mensagem/AtivarReenvio</span></a></span><div class="opblock-summary-description">Ativa a oção de reenvio de um arquivo já gerado</div><!-- react-empty: 170 --></div><noscript></noscript></div></span><!-- react-text: 172 --> <!-- /react-text --></div></div></span><span><div class="opblock-tag-section is-open"><h4 class="opblock-tag no-desc" id="operations-tag-Parametro"><a class="nostyle"><span>Parametro</span></a><small></small><div></div><button class="expand-operation" title="Collapse operation"><svg class="arrow" width="20" height="20"><use href="#large-arrow-down" xlink:href="#large-arrow-down"></use></svg></button></h4><div style="height: auto; border: none; margin: 0px; padding: 0px;"><!-- react-text: 184 --> <!-- /react-text --><span><div class="opblock opblock-get" id="operations-Parametro-Get"><div class="opblock-summary opblock-summary-get"><span class="opblock-summary-method">GET</span><span class="opblock-summary-path"><a class="nostyle"><span>/api/Parametro/Get</span></a></span><div class="opblock-summary-description">Obtém lista de parametros do Conecta</div><!-- react-empty: 193 --></div><noscript></noscript></div></span><span><div class="opblock opblock-get" id="operations-Parametro-Get"><div class="opblock-summary opblock-summary-get"><span class="opblock-summary-method">GET</span><span class="opblock-summary-path"><a class="nostyle"><span>/api/Parametro/Get/{id}</span></a></span><div class="opblock-summary-description">Obtém parametro do Conecta</div><!-- react-empty: 203 --></div><noscript></noscript></div></span><span><div class="opblock opblock-post" id="operations-Parametro-Post"><div class="opblock-summary opblock-summary-post"><span class="opblock-summary-method">POST</span><span class="opblock-summary-path"><a class="nostyle"><span>/api/Parametro/Post</span></a></span><div class="opblock-summary-description">Insere um parametro do Conecta</div><!-- react-empty: 213 --></div><noscript></noscript></div></span><span><div class="opblock opblock-put" id="operations-Parametro-Put"><div class="opblock-summary opblock-summary-put"><span class="opblock-summary-method">PUT</span><span class="opblock-summary-path"><a class="nostyle"><span>/api/Parametro/Put</span></a></span><div class="opblock-summary-description">Insere um parametro do Conecta</div><!-- react-empty: 223 --></div><noscript></noscript></div></span><span><div class="opblock opblock-delete" id="operations-Parametro-Delete"><div class="opblock-summary opblock-summary-delete"><span class="opblock-summary-method">DELETE</span><span class="opblock-summary-path"><a class="nostyle"><span>/api/Parametro/Delete/{id}</span></a></span><div class="opblock-summary-description">Insere um parametro do Conecta</div><!-- react-empty: 233 --></div><noscript></noscript></div></span><span><div class="opblock opblock-get" id="operations-Parametro-Listar"><div class="opblock-summary opblock-summary-get"><span class="opblock-summary-method">GET</span><span class="opblock-summary-path"><a class="nostyle"><span>/api/Parametro/Listar</span></a></span><div class="opblock-summary-description">Lista parametros do Conecta utilizando filtro de busca</div><!-- react-empty: 243 --></div><noscript></noscript></div></span><!-- react-text: 245 --> <!-- /react-text --></div></div></span></div></section></div><div class="wrapper"><section class="block col-12 block-desktop col-12-desktop"><section class="models is-open"><h4><span>Models</span><svg width="20" height="20"><use xlink:href="#large-arrow-down"></use></svg></h4><div style="height: auto; border: none; margin: 0px; padding: 0px;"><!-- react-text: 254 --> <!-- /react-text --><div id="model-ParametroViewModel" class="model-container"><span class="models-jump-to-path"><!-- react-empty: 257 --></span><span class="model-box"><span style="cursor: pointer;"><span class="model-box"><span class="model model-title">ParametroViewModel</span></span></span><span style="cursor: pointer;"><span class="model-toggle collapsed"></span></span><!-- react-text: 264 --> <!-- /react-text --></span></div><!-- react-text: 265 --> <!-- /react-text --></div></section></section></div></div></div><div class="wrapper"><section class=""><!-- react-empty: 15 --></section></div></section></div>
+
+<!-- Workaround for https://github.com/swagger-api/swagger-editor/issues/1371 -->
+<script>
+  if (window.navigator.userAgent.indexOf("Edge") > -1) {
+    console.log("Removing native Edge fetch in favor of swagger-ui's polyfill")
+    window.fetch = undefined;
+  }
+</script>
+
+<script src="./BACK-CONECTA - DEAL - Swagger UI_files/swagger-ui-bundle.js.download"> </script>
+<script src="./BACK-CONECTA - DEAL - Swagger UI_files/swagger-ui-standalone-preset.js.download"> </script>
+<script>
+  window.onload = function () {
+    var configObject = JSON.parse('{"urls":[{"url":"/swagger/v1/swagger.json","name":"Conecta Api v1"}],"deepLinking":false,"displayOperationId":false,"defaultModelsExpandDepth":1,"defaultModelExpandDepth":1,"defaultModelRendering":"example","displayRequestDuration":false,"docExpansion":"list","showExtensions":false,"showCommonExtensions":false,"supportedSubmitMethods":["get","put","post","delete","options","head","patch","trace"],"validatorUrl":null}');
+    var oauthConfigObject = JSON.parse('{"clientId":"clientId","clientSecret":"clientSecret","scopeSeperator":" ","useBasicAuthenticationWithAccessCodeGrant":false}');
+
+    // Apply mandatory parameters
+    configObject.dom_id = "#swagger-ui";
+    configObject.presets = [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset];
+    configObject.layout = "StandaloneLayout";
+
+    // If oauth2RedirectUrl isn't specified, use the built-in default
+    if (!configObject.hasOwnProperty("oauth2RedirectUrl"))
+      configObject.oauth2RedirectUrl = window.location.href.replace("index.html", "oauth2-redirect.html");
+
+    // Build a system
+    const ui = SwaggerUIBundle(configObject);
+
+    // Apply OAuth config
+    ui.initOAuth(oauthConfigObject);
+  }
+</script>
+
+
+
+</body></html>
